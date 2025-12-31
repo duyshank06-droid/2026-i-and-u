@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tổng kết 2025 – Chào đón 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#1a1a1a,#000);
+  overflow:hidden;
+}
+
+/* BOOK */
+.book{
+  width:380px;
+  height:560px;
+  position:relative;
+  perspective:2200px;
+}
+
+/* PAGE */
+.page{
+  position:absolute;
+  inset:0;
+  background:#0f0f0f;
+  border-radius:18px;
+  transform-origin:left center;
+  transform-style:preserve-3d;
+  transition:transform 1.6s ease;
+  box-shadow:0 30px 70px rgba(0,0,0,.85);
+  cursor:pointer;
+}
+
+/* GÁY SÁCH */
+.page::before{
+  content:"";
+  position:absolute;
+  left:0;
+  width:14px;
+  height:100%;
+  background:linear-gradient(to right,#2a2a2a,#0f0f0f);
+  border-radius:18px 0 0 18px;
+}
+
+/* BÌA */
+.cover{
+  background:
+    linear-gradient(135deg,#1e1e1e,#050505),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,215,140,.04),
+      rgba(255,215,140,.04) 2px,
+      transparent 2px,
+      transparent 6px
+    );
+}
+
+/* LẬT */
+.page.flipped{
+  transform:rotateY(-180deg);
+  pointer-events:none;
+}
+
+/* CONTENT */
+.content{
+  height:100%;
+  padding:42px 36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:24px;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  color:#fff;
+  text-align:center;
+  letter-spacing:.25em;
+  font-size:1.6rem;
+}
+
+p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  line-height:2.1;
+  color:#eee;
+}
+
+img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 10px 28px rgba(0,0,0,.6);
+}
+
+.hint{
+  text-align:center;
+  font-size:.75rem;
+  opacity:.45;
+}
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+  <!-- BÌA TRƯỚC -->
+  <div class="page cover">
+    <div class="content">
+      <h1>TỔNG KẾT 2025</h1>
+      <p>
+        Một năm không dễ dàng.<br>
+        Có những ngày rất mệt,<br>
+        có những đoạn anh từng muốn bỏ qua.<br><br>
+        Nhưng trong cả năm ấy,<br>
+        điều khiến anh muốn ở lại<br>
+        chính là em.
+      </p>
+      <div class="hint">Chạm để lật trang</div>
+    </div>
+  </div>
+
+  <!-- TRANG 1 -->
+  <div class="page">
+    <div class="content">
+      <p>
+        Giao thừa năm nay yên lặng.<br>
+        Thành phố chậm lại,<br>
+        còn anh thì nhớ em nhiều hơn anh nghĩ.
+      </p>
+      <img src="images/images1.jpg">
+    </div>
+  </div>
+
+  <!-- TRANG 2 -->
+  <div class="page">
+    <div class="content">
+      <p>
+        Có những lúc anh mệt mỏi,<br>
+        mọi thứ trở nên rối rắm.<br><br>
+        Nhưng chỉ cần nghĩ tới em,<br>
+        anh lại muốn bước tiếp —<br>
+        chậm rãi, nhưng chắc chắn.
+      </p>
+      <img src="images/images2.jpg">
+    </div>
+  </div>
+
+  <!-- TRANG 3 -->
+  <div class="page">
+    <div class="content">
+      <p>
+        Cảm ơn em vì đã ở đó.<br>
+        Không cần phải hoàn hảo,<br>
+        chỉ cần đủ thật<br>
+        để anh tin.
+      </p>
+      <img src="images/images3.jpg">
+    </div>
+  </div>
+
+  <!-- BÌA SAU -->
+  <div class="page cover">
+    <div class="content">
+      <h1>CHÀO ĐÓN 2026</h1>
+      <p>
+        Một cuốn sách mới được mở ra.<br>
+        Anh không biết sẽ có bao nhiêu trang,<br>
+        chỉ mong rằng —<br><br>
+        ở những trang đầu tiên,<br>
+        vẫn có em bên cạnh.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<audio id="music" src="music/all-the-kids-are-depressed.mp3" loop></audio>
+
+<script>
+const pages = document.querySelectorAll('.page');
+const music = document.getElementById('music');
+let current = 0;
+
+pages.forEach((page, i) => {
+  page.style.zIndex = pages.length - i;
+  page.addEventListener('click', () => {
+    if(current === 0){
+      music.play().catch(()=>{});
+      music.volume = 0.6;
+    }
+    page.classList.add('flipped');
+    current++;
+  });
+});
+</script>
+
+</body>
+</html>
